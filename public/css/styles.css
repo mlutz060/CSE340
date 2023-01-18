@@ -4,3 +4,97 @@
 *:after {
   box-sizing: border-box;
 }
+header{
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-width: 5px;
+  border-color: rgb(2, 138, 138);
+}
+nav{
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-width: 5px;
+  border-color: rgb(2, 138, 138);
+}
+nav ul{
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(67, 67, 67);
+  color: white;
+  padding: 10px;
+}
+main, footer{
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-width: 5px;
+  border-color: rgb(2, 138, 138);
+}
+footer{
+  border-bottom-style: solid;
+  border-width: 5px;
+  border-color: rgb(2, 138, 138);
+}
+body{
+  background-image: url("../images/site/checkerboard.jpg");
+  font-family: "Raleway", sans-serif;
+}
+.details-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+.upgrade-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+.upgrade{
+  display: block;
+  border: #000000 solid;
+  background-color:rgb(2, 138, 138);
+  text-align: center;
+}
+#floater{
+  width: 30%;
+  background-color: white;
+  opacity: 75%;
+  color: rgb(2, 138, 138);
+  padding: 10px;
+  position: absolute;
+  top: 80px;
+}
+#floater h3, p, img{
+  font-weight: bold;
+  color: #000000;
+}
+button{
+  padding: 25px;
+  width: 100%;
+  background-color: rgb(2, 138, 138);
+}
+#hero-container{
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+#hero{
+  width: 100%;
+}
+@media (max-width: 450px) {
+  
+}
