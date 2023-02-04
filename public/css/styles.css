@@ -4,8 +4,24 @@
 *:after {
   box-sizing: border-box;
 }
+#header{
+  display: none;
+}
+.reviews li{
+  padding: 15px;
+}
+h1{
+  font-size: 40px;
+}
+h2{
+  font-size: 30px;
+}
+.upgrade-title{
+  font-size: 20px;
+}
 header{
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: white;
   width: 80%;
@@ -15,7 +31,11 @@ header{
   border-right-style: solid;
   border-left-style: solid;
   border-width: 5px;
-  border-color: rgb(2, 138, 138);
+  border-color: rgb(0, 113, 199);
+}
+a{
+  text-decoration: none;
+  color: #000000;
 }
 nav{
   background-color: white;
@@ -25,7 +45,7 @@ nav{
   border-right-style: solid;
   border-left-style: solid;
   border-width: 5px;
-  border-color: rgb(2, 138, 138);
+  border-color: rgb(0, 113, 199);
 }
 nav ul{
   display: flex;
@@ -33,6 +53,9 @@ nav ul{
   background-color: rgb(67, 67, 67);
   color: white;
   padding: 10px;
+}
+nav li{
+  list-style-type: none;
 }
 main, footer{
   background-color: white;
@@ -42,15 +65,15 @@ main, footer{
   border-right-style: solid;
   border-left-style: solid;
   border-width: 5px;
-  border-color: rgb(2, 138, 138);
+  border-color: rgb(0, 113, 199);
 }
 footer{
   border-bottom-style: solid;
   border-width: 5px;
-  border-color: rgb(2, 138, 138);
+  border-color: rgb(0, 113, 199);
 }
 body{
-  background-image: url("../images/site/checkerboard.jpg");
+  background-image: url("/images/site/checkerboard.jpg");
   font-family: "Raleway", sans-serif;
 }
 .details-container{
@@ -63,29 +86,33 @@ body{
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
+.upgrade-container h2{
+  grid-column: 1/2;
+}
 .upgrade{
   display: block;
   border: #000000 solid;
-  background-color:rgb(2, 138, 138);
+  background-color: rgb(0, 113, 199);
   text-align: center;
 }
+.upgrade a{
+  color: white;
+}
 #floater{
-  width: 30%;
-  background-color: white;
-  opacity: 75%;
-  color: rgb(2, 138, 138);
+  width: 40%;
+  background-color: rgb(255, 255, 255, 0.7);
+  color: rgb(0, 113, 199);
   padding: 10px;
   position: absolute;
   top: 80px;
-}
-#floater h3, p, img{
-  font-weight: bold;
-  color: #000000;
+  font-size: 20px;
+  font-weight: bolder;
 }
 button{
-  padding: 25px;
+  padding: 20px;
   width: 100%;
-  background-color: rgb(2, 138, 138);
+  background-color: rgb(0, 113, 199);
+  color: white;
 }
 #hero-container{
   width: 80%;
@@ -95,6 +122,50 @@ button{
 #hero{
   width: 100%;
 }
-@media (max-width: 450px) {
-  
+@media screen and (max-width: 480px) {
+  body{
+    background-image: none;
+  }
+  #header{
+    display: block;
+  }
+  #logo{
+    display: none;
+  }
+  #myAccount{
+    font-size: 20px;
+  }
+  header{
+    border: none;
+    padding: 0px;
+  }
+  main{
+    width: 100%;
+    border: none;
+  }
+  #floater{
+    position: absolute;
+    width: 45%;
+    top: 0px;
+    padding: 0px;
+    font-size: 14px;
+  }
+  #hero-container{
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+  .details-container{
+    display: block;
+  }
+  nav{
+    width: 100%;
+    background-color: rgb(67, 67, 67);
+    border: none;
+  }
+  footer{
+    border: none;
+    width: 100%;
+  }
+
 }

@@ -8,6 +8,7 @@
 const express = require("express")
 const expressLayouts = require('express-ejs-layouts');
 const env = require("dotenv").config()
+const baseController = require("./controllers/baseController")
 const app = express()
 
 /* ***********************
@@ -22,6 +23,8 @@ app.set('layout', './layouts/layout') //not at views root
  * Routes
  *************************/
 app.use(require("./routes/static"))
+app.get("/", baseController.buildHome)
+app.use("/inv", require("./routes/inventory-route"))
 
 //Index route
 app.get("/",function(req,res){
