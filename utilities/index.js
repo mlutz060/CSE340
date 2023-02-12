@@ -22,9 +22,23 @@ Util.buildNav = function (data) {
 }
 
 Util.getNav = async function (req, res, next) {
-    let data = await invModel.getClassifications()
-    nav= Util.buildNav(data)
-    return nav
+    let data = await invModel.getClassifications();
+    nav= Util.buildNav(data);
+    return nav;
 }
+
+Util.buildInventory = function (data){
+    let list = "<div>";
+    
+
+}
+
+Util.getInventory = async function(req, res, next){
+    let data = await invModel.getClassifications();
+    inventory = Util.buildInventory(data);
+    return inventory;
+}
+
+Util.getClassifications = 
 
 module.exports = Util;
