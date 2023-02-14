@@ -11,15 +11,26 @@ invCont.buildByClassification = async function (req, res, next) {
     const className = data[0].classification_name 
     res.render("./inventory/classification-view", {
         title: className + "vehicles",
+        //the fact that nave has no pair assumes that
+        //the key and the value are identical
         nav,
+        //You must supply a value even if you don't have it right way
         message: null,
         data,
     })
 }
 
-// invCont.processRequest = asyn function (req, res, next) {
-//     const requestId = req.params.requestId;
+invCont.buildVehicle = async function (req, res, next){
+    const invId = req.params.inv_id;
+    let nav = await utilities.getNav();
+    let data = await invModel.getVehicleByInvId(invId);
+    let view = await utilities.buildVehicle(data[0]);
+    res.render("./inventory/vehicle-detail", {
+        title: null,
+        message: null,
+        view
+    })
+}
 
-// }
 
 module.exports = invCont;

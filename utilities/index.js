@@ -27,18 +27,18 @@ Util.getNav = async function (req, res, next) {
     return nav;
 }
 
-Util.buildInventory = function (data){
-    let list = "<div>";
-    
-
+Util.buildVehicle = function (data){
+    let view = "<h1>${data.inv_year} ${data.inv_make} ${data.inv_model}</h1>"
+    view +="<div class='image'><img>${data.image}</img></div>"
+    view +="<div class='details'><h2>${data.inv_price}</h2><br>"
+    view+= "<p>${data.inv_description}</p></div>"
+    return view;
 }
 
-Util.getInventory = async function(req, res, next){
-    let data = await invModel.getClassifications();
-    inventory = Util.buildInventory(data);
-    return inventory;
+Util.getVehicle = async function(req, res, next){
+    let data = await invModel.getVehicleByInvId(invId);
+    inventory = Util.buildVehicle(data);
+    return view;
 }
-
-Util.getClassifications = 
 
 module.exports = Util;
