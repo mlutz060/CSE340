@@ -41,4 +41,19 @@ Util.getVehicle = async function(req, res, next){
     return view;
 }
 
+Util.myAccount = function(req, res, next){
+    let form = "<form action='post'>"
+    form += "<label for='username'>Username:</label>"
+    form += "<input require type='text' name='username' placeholder='user123abc'>"
+    form += "<br>"
+    form += "<label for='password'>Password:</label>"
+    form += "<input require type='text' name='password' placeholder='**********'>"
+    form += "<br>"
+    form += "<button type='submit'>Login</button>"
+    form += "<h1>No account? <span><a href='/'>Sign up</a></span></h1>"
+    form += "</form>"
+    return form;
+}
+
+
 module.exports = Util;
