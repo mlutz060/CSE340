@@ -10,8 +10,8 @@ Util.buildNav = function (data) {
         list +=
             '<a href="/inv/type/' +
             row.classification_id +
-            '"title="See our inventory of ' +
-            row.classification_name+
+            '" title="See our inventory of ' +
+            row.classification_name +
             ' vehicles">' +
             row.classification_name +
             "</a>"
@@ -28,10 +28,23 @@ Util.getNav = async function (req, res, next) {
 }
 
 Util.buildVehicle = function (data){
-    let view = "<h1>${data.inv_year} ${data.inv_make} ${data.inv_model}</h1>"
-    view +="<div class='image'><img>${data.image}</img></div>"
-    view +="<div class='details'><h2>${data.inv_price}</h2><br>"
-    view+= "<p>${data.inv_description}</p></div>"
+        let view ="<div class='vehicleContainer'>"
+        view += "<div class='image'><img src='"
+        view +=data.inv_image
+        view +="'></img></div>"
+        view += "<div class='details'><h1>"
+        view +=data.inv_year 
+        view += " "
+        view +=data.inv_make 
+        view += " "
+        view +=data.inv_model
+        view +="</h1>"
+        view +="<h2> $"
+        view +=data.inv_price
+        view +="</h2><br>"
+        view+= "<p>"
+        view +=data.inv_description
+        view += "</p></div></div>"
     return view;
 }
 
@@ -39,20 +52,6 @@ Util.getVehicle = async function(req, res, next){
     let data = await invModel.getVehicleByInvId(invId);
     inventory = Util.buildVehicle(data);
     return view;
-}
-
-Util.myAccount = function(req, res, next){
-    let form = "<form action='post'>"
-    form += "<label for='username'>Username:</label>"
-    form += "<input require type='text' name='username' placeholder='user123abc'>"
-    form += "<br>"
-    form += "<label for='password'>Password:</label>"
-    form += "<input require type='text' name='password' placeholder='**********'>"
-    form += "<br>"
-    form += "<button type='submit'>Login</button>"
-    form += "<h1>No account? <span><a href='/'>Sign up</a></span></h1>"
-    form += "</form>"
-    return form;
 }
 
 

@@ -50,7 +50,7 @@ nav{
 nav ul{
   display: flex;
   justify-content: space-around;
-  background-color: rgb(67, 67, 67);
+  background-color: rgb(0, 113, 199);
   color: white;
   padding: 10px;
 }
@@ -76,6 +76,9 @@ body{
   background-image: url("/images/site/checkerboard.jpg");
   font-family: "Raleway", sans-serif;
 }
+.vehicleContainer{
+  display: flex;
+}
 .details-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -98,6 +101,9 @@ body{
 .upgrade a{
   color: white;
 }
+#loginForm{
+  width: 50%;
+}
 #floater{
   width: 40%;
   background-color: rgb(255, 255, 255, 0.7);
@@ -114,6 +120,14 @@ button{
   background-color: rgb(0, 113, 199);
   color: white;
 }
+div .image img{
+ width: 100%;
+ padding: 10px;
+}
+div .details{
+  text-align: right;
+  width: 50%;
+}
 #hero-container{
   width: 80%;
   margin: 0 auto;
@@ -121,6 +135,14 @@ button{
 }
 #hero{
   width: 100%;
+}
+#loginForm form{
+  padding: 25px;
+}
+#loginForm .input{
+  font-size: 18px;
+  background-color:rgb(0, 113, 199);
+
 }
 @media screen and (max-width: 480px) {
   body{
@@ -157,6 +179,9 @@ button{
   }
   .details-container{
     display: block;
+  }
+  div .image img{
+    width: 100%;
   }
   nav{
     width: 100%;

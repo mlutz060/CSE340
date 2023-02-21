@@ -1,10 +1,22 @@
 <% if (title) { %>
     <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+    <% } else { res.redirect("/")} %>
 
 <% if (message) { %>
     <p class="notice"><%= message %></p>
     <% } %>
-<div><%- loginForm %></div>
+
+<div id="loginForm">
+  <form action="#">
+    <label for="username">Username:</label>
+    <br>
+    <input class="input" require type="text" id="username" placeholder="user123abc">
+    <br>
+    <label for="password">Password:</label>
+    <br>
+    <input class="input" require type="text" id="password">
+    <br>
+    <button type="submit" id="loginbtn" href="">Login</button>
+    <h1>No account? <span><a href="/">Sign up</a></span></h1>
+  </form>
+</div>
