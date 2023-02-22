@@ -26,4 +26,24 @@ async function getVehiclesByInvId(invId){
     }
 }
 
-module.exports = { getVehiclesByInvId, getClassifications, getVehiclesByClassificationId };
+async function postNewVehicle(vehicleData){
+    try{
+        const data = await pool.query("INSERT INTO public.inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_colors)",
+        [vehicleData])
+    }
+    catch (error){
+        console.error('postVehicle error' + error)
+    }
+}
+
+async function addClassification(classificationData){
+    try{
+        const data = await pool.query("INSERT INTO public.classification (classification_name) VALUES",
+        [classificationData])
+    }
+    catch (error){
+        console.error('postVehicle error' + error)
+    }
+}
+
+module.exports = { getVehiclesByInvId, getClassifications, getVehiclesByClassificationId, postNewVehicle };

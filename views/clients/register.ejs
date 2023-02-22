@@ -6,27 +6,35 @@
     <p class="notice"><%= message %></p>
     <% } %>
 
-<% if (error) { %>
-    <p class="error"><%= error %></p>
-    <% } %>
-
 <div>
     <form id="registrationForm" action="/client/register" method="post">
         <label for="fname">First Name:</label>
         <br>
         <input required type="text" id="fname" placeholder="Jane">
+        <br>
         <label for="lname">Last Name:</label>
         <br>
         <input required type="text" id="lname" placeholder="Wilkinson">
+        <br>
         <label for="email">Email:</label>
         <br>
         <input required type="email" id="email" placeholder="abc@defg.com">
+        <br>
         <label for="address">Address:</label>
         <br>
         <input required type="text" id="address" 
         placeholder="1234 Street Dr. City, State ZIP code">
-        <label for="password">Password:</label>
+        <br>
+        <label for="password" min="12" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">Password:</label>
+        <br>
         <input required type="password" hidden id="password">
         <button type="submit" id="registerbtn">Register</button>
     </form>
+    <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>number</b></p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>special character</b></p>
+        <p id="length" class="invalid">Minimum <b>12 characters</b></p>
+      </div>
 </div>

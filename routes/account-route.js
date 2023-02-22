@@ -5,5 +5,6 @@ const Utils = require("../utilities/")
 
 router.get("/login", accountController.buildLogin);
 router.get("/register", accountController.buildRegister)
+router.post('/register', accountController.registerClient)
 
 module.exports = router;

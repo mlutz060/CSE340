@@ -39,9 +39,6 @@ app.use("/inv", require("./routes/inventory-route"))
 /*Account Route */
 app.use("/client", require("./routes/account-route"))
 
-/*Register Route */
-app.use("/client", require("./routes/register-account-route"))
-
 //Index route
 // app.get("/",function(req,res){
 //   res.render('index', {title: "Home"})
