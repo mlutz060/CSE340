@@ -9,7 +9,9 @@ router.get("/detail/:inv_id", invController.buildVehicle);
 //build vehicle management page
 router.get("/management-view", invController.buildVehicleManagement);
 
-router.get("/add-classification", invController.getNewClassification);
+router.get("/add-classification", invController.buildNewClassification);
+
+router.get("/add-vehicle", invController.addVehicle);
 
 router.post("/add-classification", invController.addClassification);
 

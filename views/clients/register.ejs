@@ -6,19 +6,27 @@
     <p class="notice"><%= message %></p>
     <% } %>
 
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <%  }) %>
+    </ul>
+<% } %>
+
 <div>
     <form id="registrationForm" action="/client/register" method="post">
-        <label for="fname">First Name:</label>
+        <label for="client_firstname">First Name:</label>
         <br>
-        <input required type="text" id="fname" placeholder="Jane">
+        <input name="client_firstname" required type="text" id="client_firstname" placeholder="Jane" value="<%= locals.client_firstname %>">
         <br>
-        <label for="lname">Last Name:</label>
+        <label for="client_lastname">Last Name:</label>
         <br>
-        <input required type="text" id="lname" placeholder="Wilkinson">
+        <input name="client_lastname" required type="text" id="client_lastname" placeholder="Wilkinson" value="<%= locals.client_lastname %>">
         <br>
-        <label for="email">Email:</label>
+        <label for="client_email">Email:</label>
         <br>
-        <input required type="email" id="email" placeholder="abc@defg.com">
+        <input required name="client_email" type="email" id="client_email" placeholder="abc@defg.com" value="<%= locals.client_email %>">
         <br>
         <label for="address">Address:</label>
         <br>

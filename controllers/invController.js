@@ -1,6 +1,5 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities");
-
 const invCont = {};
 
 invCont.buildByClassification = async function (req, res, next) {
@@ -19,6 +18,35 @@ invCont.buildByClassification = async function (req, res, next) {
         data,
     })
 }
+
+invCont.buildNewClassification = async function (req, res, next){
+    let nav = await utilities.getNav();
+    let data = await invModel.getNewClassification()
+    res.render("../views/inventory/add-classification.ejs", {
+        title: null,
+        message: null,
+    })
+}
+
+invCont.addClassification = async function (req, res, next){
+    let nav = await utilities.getNav();
+    let data = await invModel.postNewClassification(classificationData)
+    let view = utilities.buildAddClassification()
+    res.render("../views/inventory/add-classification.ejs",{
+        title: "Add Classification",
+        message: null,
+    })
+}
+
+invCont.addClassificationView = async function (req, res, next){
+    let nav = await utilities.getNav();
+    res.render("manage/add-classification.ejs", {
+        title: `Add New Classification`,
+        nav,
+        message: null,
+      });
+}
+
 
 invCont.buildVehicle = async function (req, res, next){
     const invId = req.params.inv_id;
@@ -71,24 +99,5 @@ invCont.addVehicle = async function (req, res, next){
         })
     }
 }
-invCont.getNewClassification = async function (req, res, next){
-    let nav = await utilities.getNav();
-    let data = await invModel.getNewClassification()
-    res.render("../views/inventory/add-classification.ejs", {
-        title: null,
-        message: null,
-    })
-}
-
-invCont.addClassification = async function (req, res, next){
-    let nav = await utilities.getNav();
-    let data = await invModel.postNewClassification(classificationData)
-    let view = utilities.buildAddClassification()
-    res.render("../views/inventory/add-classification.ejs",{
-        title: "Add Classification",
-        message: null,
-    })
-}
-
 
 module.exports = invCont;
