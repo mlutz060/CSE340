@@ -6,17 +6,20 @@
     <p class="notice"><%= message %></p>
     <% } %>
 
-<div id="loginForm">
-  <form id="loginForm" action="/client/login" method="post">
+<div class="clientForm">
+  <form action="/client/login" method="post">
     <label for="username">Username:</label>
     <br>
-    <input name="client_username" class="input" require type="text" id="username" placeholder="user123abc">
+    <input name="client_username" require type="text" id="username">
     <br>
     <label for="password">Password:</label>
     <br>
-    <input name="client_password" class="input" require type="text" id="password">
+    <input name="client_password" require type="text" id="password">
     <br>
-    <button type="submit" id="loginbtn" href="">Login</button>
-    <h1>No account? <span><a href="/">Sign up</a></span></h1>
+    <button type="submit" class="formbtn" href="/client/login">Login</button>
   </form>
+</div>
+<div>
+  <h1>No account?</h1>
+  <h3><a href="/client/register"><button id="signupbtn">Sign up Here!</button></a></h3>
 </div>

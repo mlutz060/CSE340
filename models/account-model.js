@@ -36,4 +36,4 @@ async function checkExistingEmail(client_email){
   }
 
 
-module.exports = { registerClient };
+module.exports = { registerClient, checkExistingEmail };

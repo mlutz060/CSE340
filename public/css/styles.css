@@ -36,6 +36,11 @@ h2{
   left: -35px;
   content: "&#10004;";
 }
+.formbtn{
+  margin-top: 10px;
+  border: none;
+  box-shadow: #000;
+}
 
 /* Add a red text color and an "x" icon when the requirements are wrong */
 .invalid {
@@ -129,9 +134,6 @@ body{
 .upgrade a{
   color: white;
 }
-#loginForm{
-  width: 50%;
-}
 #floater{
   width: 40%;
   background-color: rgb(255, 255, 255, 0.7);
@@ -164,13 +166,24 @@ div .details{
 #hero{
   width: 100%;
 }
-#loginForm form{
+.clientForm form{
   padding: 25px;
+  width: 65%;
+  margin: 0 auto;
 }
-#loginForm .input{
-  font-size: 18px;
+.clientForm input{
+  font-size: 30px;
   background-color:rgb(0, 113, 199);
-
+  border: none;
+  color: white;
+  width: 100%;
+}
+.clientForm ::placeholder{
+  color: rgb(204, 203, 203);
+}
+#signupbtn{
+  width: 200px;
+  border: none;
 }
 @media screen and (max-width: 480px) {
   body{

@@ -1,6 +1,7 @@
 <% if (title) { %>
     <h1><%= title %></h1>
-    <% } else { res.redirect("/")} %>
+    <% } else {} %>
+
 
 <% if (message) { %>
     <p class="notice"><%= message %></p>
@@ -8,12 +9,12 @@
 
 <div id="add-classification">
     <fieldset>
-        <form action="/controllers/invController.js" method="post">
-            <label for="Classification">Classification Name
+        <form action="/inv/add-classification" method="post">
+            <label for="classification_data">Classification Name
                 <span>Name may NOT contain a space or special 
                     character of any kind</span>
             </label>
-            <input type="text [A-Za-z]">
+            <input id="classification_data" name="classification_data" type="text [A-Za-z]">
             <button type="submit">Add Classification</button>
         </form>
     </fieldset>

@@ -6,7 +6,7 @@ const validate = {};
 /*  **********************************
  *  Registration Data Validation Rules
  * ********************************* */
-validate.registationRules = () => {
+validate.registrationRules = () => {
     return [
       // firstname is required and must be string
       body("client_firstname")
@@ -70,5 +70,6 @@ validate.registationRules = () => {
     }
     next()
   }
+  
 
 module.exports = validate;

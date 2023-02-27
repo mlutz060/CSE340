@@ -21,7 +21,6 @@ invCont.buildByClassification = async function (req, res, next) {
 
 invCont.buildNewClassification = async function (req, res, next){
     let nav = await utilities.getNav();
-    let data = await invModel.getNewClassification()
     res.render("../views/inventory/add-classification.ejs", {
         title: null,
         message: null,
@@ -31,7 +30,6 @@ invCont.buildNewClassification = async function (req, res, next){
 invCont.addClassification = async function (req, res, next){
     let nav = await utilities.getNav();
     let data = await invModel.postNewClassification(classificationData)
-    let view = utilities.buildAddClassification()
     res.render("../views/inventory/add-classification.ejs",{
         title: "Add Classification",
         message: null,

@@ -1,5 +1,6 @@
 const Utils = require("../utilities/");
 const register = require("../models/account-model");
+const bcrypt = require("bcryptjs");
 
 /* ****************************************
 *  Deliver login view
@@ -27,15 +28,27 @@ const register = require("../models/account-model");
  *  Process registration request
  **************************************** */
 async function registerClient(req, res) {
-  let nav = await utilities.getNav()
+  let nav = await Utils.getNav()
   const { client_firstname, client_lastname, client_email, client_password } =
     req.body
 
-  const regResult = await accountModel.registerClient(
+    let hashedPassword
+    try {
+      // pass regular password and cost (salt is generated automatically)
+      hashedPassword = await bcrypt.hashSync(client_password, 10)
+    } catch (error) {
+      res.status(500).render("clients/register", {
+        title: "Registration",
+        nav,
+        message: 'Sorry, there was an error processing the registration.',
+        errors: null,
+      })
+    }
+  const regResult = await register.registerClient(
     client_firstname,
     client_lastname,
     client_email,
-    client_password
+    hashedPassword
   )
   console.log(regResult)
   if (regResult) {
@@ -55,5 +68,5 @@ async function registerClient(req, res) {
     })
   }
 }
-  
+
   module.exports = { buildLogin, buildRegister, registerClient }

@@ -36,9 +36,9 @@ async function postNewVehicle(vehicleData){
     }
 }
 
-async function addClassification(classificationData){
+async function postNewClassification(classificationData){
     try{
-        const data = await pool.query("INSERT INTO public.classification (classification_name) VALUES",
+        const data = await pool.query("INSERT INTO public.classification (classification_name)",
         [classificationData])
     }
     catch (error){
@@ -46,4 +46,4 @@ async function addClassification(classificationData){
     }
 }
 
-module.exports = { getVehiclesByInvId, getClassifications, getVehiclesByClassificationId, postNewVehicle };
+module.exports = { getVehiclesByInvId, getClassifications, postNewClassification, getVehiclesByClassificationId, postNewVehicle };
