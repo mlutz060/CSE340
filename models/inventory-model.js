@@ -2,6 +2,7 @@ const pool = require("../database")
 
 async function getClassifications(){
     return await pool.query("SELECT * FROM public.classification ORDER BY classification_name");
+    
 }
 
 async function getVehiclesByClassificationId(classificationId){
@@ -36,10 +37,10 @@ async function postNewVehicle(vehicleData){
     }
 }
 
-async function postNewClassification(classificationData){
+async function postNewClassification(classification_name){
     try{
-        const data = await pool.query("INSERT INTO public.classification (classification_name)",
-        [classificationData])
+        const data = "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *";
+        return await pool.query(data, [classification_name]);
     }
     catch (error){
         console.error('postVehicle error' + error)

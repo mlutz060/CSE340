@@ -1,6 +1,7 @@
 const express = require("express"); 
 const router = new express.Router(); 
 const invController = require("../controllers/invController");
+const validate = require('../utilities/inventory-validation');
 
 //build inventory by classificationId
 router.get("/type/:classificationId", invController.buildByClassification);
@@ -11,10 +12,16 @@ router.get("/management-view", invController.buildVehicleManagement);
 
 router.get("/add-classification", invController.buildNewClassification);
 
-router.get("/add-vehicle", invController.addVehicle);
+router.get("/add-vehicle", invController.addVehicleView);
 
-router.post("/add-classification", invController.addClassification);
+router.post("/add-classification",   
+    validate.classificationRules(),
+    validate.checkRegData,
+    invController.addClassification);
 
-router.post("/add-vehicle", invController.addVehicle)
+router.post("/add-vehicle", 
+    validate.vehicleRules(),
+    validate.checkRegData,
+    invController.postNewVehicle);
 
 module.exports = router;

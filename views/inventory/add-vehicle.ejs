@@ -1,4 +1,4 @@
-<% if (title) { %>
+ <% if (title) { %>
     <h1><%= title %></h1>
     <% } else {} %>
 
@@ -9,14 +9,10 @@
 <div>
     <p>All fields are required</p>
     <fieldset>
-        <form action="/controllers/invController.js" method="post">
+        <form action="/inv/add-vehicle" method="post">
             <label for="classification">Classification</label>
-            <select name="classification_id" id="classification">
-                <option value="1">Custom</option>
-                <option value="5">Sedan</option>
-                <option value="2">Sport</option>
-                <option value="3">SUV</option>
-                <option value="4">Truck</option>
+            <select name="classification_name" id="classification_name">
+                
             </select>
             <br>
             <label for="make">Make</label>

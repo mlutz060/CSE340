@@ -54,5 +54,4 @@ Util.getVehicle = async function(req, res, next){
     return view;
 }
 
-
 module.exports = Util;
