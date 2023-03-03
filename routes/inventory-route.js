@@ -8,7 +8,7 @@ router.get("/type/:classificationId", invController.buildByClassification);
 //connects classification view to a single vehicle
 router.get("/detail/:inv_id", invController.buildVehicle);
 //build vehicle management page
-router.get("/management-view", invController.buildVehicleManagement);
+router.get("/", invController.buildVehicleManagement);
 
 router.get("/add-classification", invController.buildNewClassification);
 

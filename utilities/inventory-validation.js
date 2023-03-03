@@ -113,7 +113,7 @@ validate.checkRegData = async (req, res, next) => {
             message: null,
             title: "Add Vehicle",
             nav,
-            classification_name,
+            classification_id,
             inv_make,
             inv_model,
             inv_description,

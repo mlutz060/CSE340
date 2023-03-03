@@ -13,9 +13,6 @@
 h1{
   font-size: 40px;
 }
-h2{
-  font-size: 30px;
-}
 .upgrade-title{
   font-size: 20px;
 }
@@ -90,6 +87,9 @@ nav ul{
 nav li{
   list-style-type: none;
 }
+nav li a{
+  color: white;
+}
 main, footer{
   background-color: white;
   width: 80%;
@@ -122,12 +122,9 @@ body{
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
-.upgrade-container h2{
-  grid-column: 1/2;
-}
 .upgrade{
   display: block;
-  border: #000000 solid;
+  padding: 10px;
   background-color: rgb(0, 113, 199);
   text-align: center;
 }
@@ -181,9 +178,38 @@ div .details{
 .clientForm ::placeholder{
   color: rgb(204, 203, 203);
 }
+.own-today{
+  border: none;
+  border-radius: 20px;
+}
 #signupbtn{
   width: 200px;
   border: none;
+}
+
+/*input forms*/
+fieldset{
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #3c3c3c;
+}
+.add-form{
+  padding: 20px;
+}
+.add-form input{
+  font-size: 20px;
+  padding: 5px;
+  margin: 10px 10px 10px 0px;
+  width: 100%;
+  border-radius: 10px;
+}
+.add-form button{
+  margin-top: 10px;
+  border: none;
+  width: 40%;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #3c3c3c;
 }
 @media screen and (max-width: 480px) {
   body{

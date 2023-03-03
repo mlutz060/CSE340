@@ -2,6 +2,14 @@ const invModel = require("../models/inventory-model")
 const Util = {}
 
 
+Util.buildClassificationList - async function (classification_id = null){
+    let data = await invModel.getClassifications()
+    let classification_list = 
+    data.rows.forEach((row) => {
+        classification_list += '<option value="' + row.classification_id + '"></option>'
+    })
+}
+
 Util.buildNav = function (data) {
     let list = "<ul>";
     list += '<li><a href="/" title="Home page">Home</a></li>'
