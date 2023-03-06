@@ -1,14 +1,18 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 
-Util.buildClassificationList - async function (classification_id = null){
-    let data = await invModel.getClassifications()
-    let classification_list = 
+Util.buildClassificationList = async () => {
+    let data = await invModel.getClassifications();
+    let select = `<select name="classification_id" id="classification_id> `;
     data.rows.forEach((row) => {
-        classification_list += '<option value="' + row.classification_id + '"></option>'
-    })
-}
+        select+= `<option value="${row.classification_id}">${row.classification_name}</option>`;
+    });
+    select += "</select>";
+    return select
+};
 
 Util.buildNav = function (data) {
     let list = "<ul>";
@@ -61,5 +65,17 @@ Util.getVehicle = async function(req, res, next){
     inventory = Util.buildVehicle(data);
     return view;
 }
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, function (err) {
+      if (err) {
+        return res.status(403).redirect("/client/login")
+      }
+    return next()
+    })
+  }
 
 module.exports = Util;

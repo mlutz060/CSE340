@@ -11,7 +11,7 @@ const expressLayouts = require('express-ejs-layouts');
 const env = require("dotenv").config();
 const baseController = require("./controllers/baseController");
 const app = express();
-
+const cookieParser = require("cookie-parser");
 /* ***********************
  * Middleware
  *************************/
@@ -39,10 +39,7 @@ app.use("/inv", require("./routes/inventory-route"))
 /*Account Route */
 app.use("/client", require("./routes/account-route"))
 
-//Index route
-// app.get("/",function(req,res){
-//   res.render('index', {title: "Home"})
-// })
+app.use(cookieParser())
 
 /* ***********************
  * Local Server Information

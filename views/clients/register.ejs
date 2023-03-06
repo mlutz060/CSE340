@@ -15,7 +15,7 @@
 <% } %>
 
 <div class="clientForm">
-    <form action="/client/register" method="post">
+    <form class="add-form" action="/client/register" method="post">
         <label for="client_firstname">First Name:</label>
         <br>
         <input name="client_firstname" required type="text" id="client_firstname" placeholder="Jane" value="<%= locals.client_firstname %>">

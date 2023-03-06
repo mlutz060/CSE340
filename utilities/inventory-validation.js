@@ -16,7 +16,7 @@ validate.classificationRules = () => {
 validate.vehicleRules = () => {
     return [
         //classification_name
-        body("classification_name")
+        body("classification_id")
         .trim()
         .escape()
         .isLength({ min:1 })
@@ -25,31 +25,31 @@ validate.vehicleRules = () => {
         body("inv_make")
         .trim()
         .escape()
-        .isLength({min:1})
+        .isLength({min:3})
         .withMessage("Vehicle make is required"),
         //inv_model
         body("inv_model")
         .trim()
         .escape()
-        .isLength({ min:1 })
+        .isLength({ min:3 })
         .withMessage("Valid model is required"),
         //inv_description
         body("inv_description")
         .trim()
         .escape()
-        .isLength({ min:1 })
+        .isLength({ min:10 })
         .withMessage("description is required"),
         //inv_image
         body("inv_image")
         .trim()
         .escape()
-        .isLength({ min:1 })
+        .isLength({ min:4 })
         .withMessage("Enter image Path"),
         //inv_thumbnail
         body("inv_thumbnail")
         .trim()
         .escape()
-        .isLength({ min:1 })
+        .isLength({ min:4 })
         .withMessage("Enter Thumbnail Path"),
         //inv_price
         body("inv_price")
@@ -57,7 +57,7 @@ validate.vehicleRules = () => {
         .escape()
         .isNumeric()
         .isDecimal()
-        .isLength({ min:1 })
+        .isLength({ min:3 })
         .withMessage("Price is required"),
         //inv_year
         body("inv_year")
@@ -71,13 +71,13 @@ validate.vehicleRules = () => {
         .trim()
         .escape()
         .isNumeric()
-        .isLength({ min:1 })
+        .isLength({ min:2 })
         .withMessage("Vehicle miles are required"),
         //inv_color
         body("inv_color")
         .trim()
         .escape()
-        .isLength({ min:1 })
+        .isLength({ min:4 })
         .withMessage("Vehicle color is required"),
     ]
 }
@@ -101,7 +101,7 @@ validate.checkRegData = async (req, res, next) => {
 } 
 
 validate.checkRegData = async (req, res, next) => {
-    const { classification_name, inv_make, inv_model,
+    const { classification_id, inv_make, inv_model,
             inv_description, inv_image, inv_thumbnail,
             inv_price, inv_year, inv_miles, inv_color } = req.body;
     let errors = [];

@@ -20,7 +20,7 @@ validate.loginRules= () => {
     ]
     
 }
-validate.checkRegData = async (req, res, next) => {
+validate.checkLoginData = async (req, res, next) => {
     const { client_username, client_password } = req.body;
     let errors = [];
     errors = validationResult(req);

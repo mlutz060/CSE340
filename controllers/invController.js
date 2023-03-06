@@ -4,7 +4,7 @@ const invCont = {};
 
 invCont.buildByClassification = async function (req, res, next) {
     const classificationId = req.params.classificationId
-    let data = await invModel.getVehiclesByClassificationId(classificationId)
+    let data = await invModel.getVehiclesByClassificationId(classification_name)
     let nav = await utilities.getNav()
     console.log(classificationId);
     const className = data[0].classification_name 
@@ -53,7 +53,7 @@ invCont.addClassification = async function (req, res, next){
 
 invCont.addVehicleView = async function (req, res, next){
     let nav = await utilities.getNav();
-    let menu = await invModel.getClassifications();
+    let menu = await utilities.buildClassificationList();
     res.render("../views/inventory/add-vehicle.ejs",{
         title: "Add Vehicle",
         nav,
