@@ -2,7 +2,7 @@ const Utils = require("../utilities/");
 const register = require("../models/account-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Util = require("../utilities/");
+const utilities = require("../utilities/");
 require("dotenv").config()
 
 /* ****************************************
@@ -78,7 +78,7 @@ async function registerClient(req, res) {
 async function loginClient(req, res, next) {
   let nav = await utilities.getNav()
   const { client_email, client_password } = req.body
-  const clientData = await accountModel.getClientByEmail(client_email)
+  const clientData = await register.getClientByEmail(client_email)
   if (!clientData) {
     const message = "Please check your credentials and try again."
     res.status(400).render("clients/login", {

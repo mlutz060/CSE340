@@ -6,22 +6,22 @@ const validate = {};
 validate.loginRules= () => {
     return [
         //username 
-        body("client_username")
+        body("client_email")
         .trim()
         .escape()
-        .isLength({ min: 1 })
-        .withMessage("Enter your username."),
+        .isLength({ min: 5 })
+        .withMessage("Enter your email."),
         //password
         body("client_password")
         .trim()
         .escape()
-        .isLength({min: 1})
+        .isLength({min: 10})
         .withMessage("Enter your password")
     ]
     
 }
 validate.checkLoginData = async (req, res, next) => {
-    const { client_username, client_password } = req.body;
+    const { client_email, client_password } = req.body;
     let errors = [];
     errors = validationResult(req);
     if (!errors.isEmpty()){
@@ -31,7 +31,7 @@ validate.checkLoginData = async (req, res, next) => {
             message: null,
             title: "Registration",
             nav,
-            client_username,
+            client_email,
             client_password,
         })
         return

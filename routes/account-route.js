@@ -23,6 +23,6 @@ router.post(
   )
 
 // default route for clients 
-router.get("/", utilities.checkJWTToken, accountController.management)
+router.get("/", utilities.checkJWTToken, utilities.jwtAuth, accountController.management)
 
 module.exports = router;
