@@ -12,7 +12,7 @@
         <form class="add-form" action="/inv/add-vehicle" method="post">
             <label for="classification">Classification</label>
             <br>
-            <div><%-menu-%></div>
+            <div><%- menu %></div>
             <br>
             <label for="make">Make</label>
             <br>
@@ -22,17 +22,20 @@
             <br>
             <input name="inv_model" type="text" id="model">
             <br>
-            <label for="description">Description</label>
+            <label for="invDescription">Description</label>
             <br>
-            <input name="inv_description" type="text" id="description">
+            <textarea
+              name="inv_description"
+              id="invDescription"
+            ></textarea>
             <br>
             <label for="image">Image Path</label>
             <br>
-            <input name="inv_image" id="image" type="text" placeholder="/image/vehicles/no-image.png">
+            <input name="inv_image" id="image" type="text" value="/image/vehicles/no-image.png">
             <br>
             <label for="thumbnail">Thumbnail Path</label>
             <br>
-            <input name="inv_thumbnail" id="thumbnail" type="text" placeholder="/images/vehicles/no-image.png">
+            <input name="inv_thumbnail" id="thumbnail" type="text" value="/images/vehicles/no-image.png">
             <br>
             <label for="price">Price</label>
             <br>
@@ -48,7 +51,7 @@
             <br>
             <label for="color">Color</label>
             <br>
-            <input name="inv_color" type="text" id="color">
+            <input name="inv_colors" type="text" id="color">
             <br>
             <button type="submit">Add Vehicle</button>
         </form>

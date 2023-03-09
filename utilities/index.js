@@ -6,12 +6,12 @@ const Util = {}
 
 Util.buildClassificationList = async () => {
     let data = await invModel.getClassifications();
-    let select = `<select name="classification_id" id="classification_id> `;
+    let menu = `<select name="classification_id" id="classification_id> `;
     data.rows.forEach((row) => {
-        select += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+        menu += `<option value="${row.classification_id}">${row.classification_name}</option>`;
     });
-    select += "</select>";
-    return select
+    menu += "</select>";
+    return menu;
 };
 
 Util.buildNav = function (data) {

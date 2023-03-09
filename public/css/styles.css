@@ -217,6 +217,25 @@ fieldset{
   border-radius: 10px;
   padding: 5px;
 }
+
+#inv-display ul{
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#inv-display .card{
+  border: solid rgb(0, 113, 199);
+  border-radius: 10px;
+  width: 30%;
+  text-align: center;
+  padding: 10px;
+}
+#inv-display .card img{
+  width: 100%;
+}
+
+
 @media screen and (max-width: 480px) {
   body{
     background-image: none;

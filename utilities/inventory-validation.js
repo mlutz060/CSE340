@@ -82,7 +82,7 @@ validate.vehicleRules = () => {
     ]
 }
 
-validate.checkRegData = async (req, res, next) => {
+validate.checkClassData = async (req, res, next) => {
     const { classification_name } = req.body;
     let errors = [];
     errors = validationResult(req);
@@ -100,7 +100,7 @@ validate.checkRegData = async (req, res, next) => {
     next()
 } 
 
-validate.checkRegData = async (req, res, next) => {
+validate.checkVehicleData = async (req, res, next) => {
     const { classification_id, inv_make, inv_model,
             inv_description, inv_image, inv_thumbnail,
             inv_price, inv_year, inv_miles, inv_color } = req.body;
@@ -108,10 +108,12 @@ validate.checkRegData = async (req, res, next) => {
     errors = validationResult(req);
     if (!errors.isEmpty()){
         let nav = await utilities.getNav();
-        res.render("../views/inventory/add-vehicle", {
+        let menu = await utilities.buildClassificationList();
+        res.render("inventory/add-vehicle", {
             errors,
             message: null,
             title: "Add Vehicle",
+            menu,
             nav,
             classification_id,
             inv_make,

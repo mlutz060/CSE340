@@ -16,12 +16,12 @@ router.get("/add-vehicle", invController.addVehicleView);
 
 router.post("/add-classification",   
     validate.classificationRules(),
-    validate.checkRegData,
+    validate.checkClassData,
     invController.addClassification);
 
 router.post("/add-vehicle", 
-    validate.vehicleRules(),
-    validate.checkRegData,
+    // validate.vehicleRules(),
+    // validate.checkVehicleData,
     invController.postNewVehicle);
 
 module.exports = router;
