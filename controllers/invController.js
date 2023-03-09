@@ -7,7 +7,7 @@ invCont.buildByClassification = async function (req, res, next) {
     let data = await invModel.getVehiclesByClassificationId(classificationId)
     let nav = await utilities.getNav()
     const className = data[0].classification_name;
-    res.render("./inventory/classification-view", {
+    res.render("inventory/classification-view", {
         title: className + " " + "Vehicles",
         //the fact that nave has no pair assumes that
         //the key and the value are identical
@@ -24,7 +24,7 @@ invCont.buildVehicle = async function (req, res, next){
     let data = await invModel.getVehiclesByInvId(invId);
     let view = await utilities.buildVehicle(data[0]);
     const vehicleName = data[0].inv_year + ' ' + data[0].inv_make + ' '+ data[0].inv_model;
-    res.render("../views/inventory/vehicle-detail", {
+    res.render("inventory/vehicle-detail", {
         title: vehicleName,
         nav,
         message: null,
@@ -35,7 +35,7 @@ invCont.buildVehicle = async function (req, res, next){
 
 invCont.addClassificationView = async function (req, res, next){
     let nav = await utilities.getNav();
-    res.render("inv/add-classification.ejs", {
+    res.render("inventory/add-classification.ejs", {
         title: `Add New Classification`,
         nav,
         message: null,
@@ -45,9 +45,9 @@ invCont.addClassificationView = async function (req, res, next){
 invCont.addClassification = async function (req, res, next){
     let nav = await utilities.getNav();
     const { classification_name } = req.body;
-    const addClassResult = await invModel.addClassification(classification_name);
+    const addClassResult = await invModel.postNewClassification(classification_name);
     if (addClassResult){
-        res.status(201).render("/inv/vehicle-management.ejs", {
+        res.status(201).render("inventory/vehicle-management.ejs", {
             title: "Vehicle Management",
             nav,
             message: `The ${classification_name} classification was successfully added`,
@@ -55,7 +55,7 @@ invCont.addClassification = async function (req, res, next){
         });
     } else{
         const message = "Sorry the addition of the new class failed";
-        res.status(501).render("/inv/add-classification.ejs", {
+        res.status(501).render("inventory/add-classification.ejs", {
             title: "Add New Classification",
             nav,
             message,
@@ -77,7 +77,7 @@ invCont.addVehicleView = async function (req, res, next) {
 
 invCont.buildNewClassification = async function (req, res, next){
     let nav = await utilities.getNav();
-    res.render("/inventory/add-classification.ejs", {
+    res.render("inventory/add-classification.ejs", {
         title: null,
         message: null,
     })
@@ -85,7 +85,7 @@ invCont.buildNewClassification = async function (req, res, next){
 
 invCont.buildVehicleManagement = async function(req,res, next){
     let nav = await utilities.getNav();
-    res.render("../views/inventory/vehicle-management.ejs",{
+    res.render("inventory/vehicle-management.ejs",{
         title: "Vehicle Management",
         message: null
     })
