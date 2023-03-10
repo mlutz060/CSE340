@@ -8,7 +8,7 @@ validate.classificationRules = () => {
         body('classification_name')
         .trim()
         .escape()
-        .isLength({ min: 1 })
+        .isLength({ min: 3 })
         .withMessage("Enter the classification name")
     ]
 }
@@ -88,7 +88,7 @@ validate.checkClassData = async (req, res, next) => {
     errors = validationResult(req);
     if (!errors.isEmpty()){
         let nav = await utilities.getNav();
-        res.render("../views/inventory/add-classification", {
+        res.render("/inventory/add-classification", {
             errors,
             message: null,
             title: "Add Classification ",

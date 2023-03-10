@@ -55,7 +55,7 @@ invCont.addClassification = async function (req, res, next){
         });
     } else{
         const message = "Sorry the addition of the new class failed";
-        res.status(501).render("inventory/add-classification.ejs", {
+        res.status(501).render("/inventory/add-classification.ejs", {
             title: "Add New Classification",
             nav,
             message,
@@ -71,6 +71,7 @@ invCont.addVehicleView = async function (req, res, next) {
       title: `Add New Vehicle`,
       nav,
       menu,
+      errors: null,
       message: null,
     });
   };
@@ -79,6 +80,8 @@ invCont.buildNewClassification = async function (req, res, next){
     let nav = await utilities.getNav();
     res.render("inventory/add-classification.ejs", {
         title: null,
+        nav,
+        errors: null, 
         message: null,
     })
 }
@@ -94,12 +97,6 @@ invCont.buildVehicleManagement = async function(req,res, next){
 invCont.postNewVehicle = async function (req, res, next){
     let nav = await utilities.getNav();
     let menu = await utilities.buildClassificationList();
-    // res.render("inventory/add-vehicle.ejs",{
-    //     title: "Add Vehicle",
-    //     nav, 
-    //     menu,
-    //     message: null
-    // })
     const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_colors} = req.body
         console.log( classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_colors )
     const addVehicleResults = await invModel.postNewVehicle(

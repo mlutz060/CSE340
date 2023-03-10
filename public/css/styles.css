@@ -36,7 +36,6 @@ h1{
 .formbtn{
   margin-top: 10px;
   border: none;
-  box-shadow: #000;
 }
 
 /* Add a red text color and an "x" icon when the requirements are wrong */

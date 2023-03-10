@@ -6,7 +6,7 @@ const Util = {}
 
 Util.buildClassificationList = async () => {
     let data = await invModel.getClassifications();
-    let menu = `<select name="classification_id" id="classification_id> `;
+    let menu = `<select name="classification_id" id="classification_id"> `;
     data.rows.forEach((row) => {
         menu += `<option value="${row.classification_id}">${row.classification_name}</option>`;
     });
@@ -40,7 +40,7 @@ Util.getNav = async function (req, res, next) {
 }
 
 Util.buildVehicle = function (data) {
-    let view = "<div class='vehicleContainer'>"
+    let view = "<div class='card'>"
     view += "<div class='image'><img src='"
     view += data.inv_image
     view += "'></img></div>"

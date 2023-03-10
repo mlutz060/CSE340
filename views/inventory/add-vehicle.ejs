@@ -6,11 +6,19 @@
     <p class="notice"><%= message %></p>
     <% } %>
 
+    <% if (errors) { %>
+        <ul class="notice">
+        <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+        <%  }) %>
+        </ul>
+    <% } %>
+
 <div>
     <h3>**All fields are required**</h3>
     <fieldset>
         <form class="add-form" action="/inv/add-vehicle" method="post">
-            <label for="classification">Classification</label>
+            <label>Classification</label>
             <br>
             <div><%- menu %></div>
             <br>

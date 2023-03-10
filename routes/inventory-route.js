@@ -20,8 +20,8 @@ router.post("/add-classification",
     invController.addClassification);
 
 router.post("/add-vehicle", 
-    // validate.vehicleRules(),
-    // validate.checkVehicleData,
+    validate.vehicleRules(),
+    validate.checkVehicleData,
     invController.postNewVehicle);
 
 module.exports = router;
