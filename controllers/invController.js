@@ -6,7 +6,7 @@ invCont.buildByClassification = async function (req, res, next) {
     const classificationId = req.params.classificationId
     let data = await invModel.getVehiclesByClassificationId(classificationId)
     let nav = await utilities.getNav()
-    const className = data[0].classification_name;
+    const className = data[0].classificationId;
     res.render("inventory/classification-view", {
         title: className + " " + "Vehicles",
         //the fact that nave has no pair assumes that
@@ -55,7 +55,7 @@ invCont.addClassification = async function (req, res, next){
         });
     } else{
         const message = "Sorry the addition of the new class failed";
-        res.status(501).render("/inventory/add-classification.ejs", {
+        res.status(501).render("inventory/vehicle-management.ejs", {
             title: "Add New Classification",
             nav,
             message,

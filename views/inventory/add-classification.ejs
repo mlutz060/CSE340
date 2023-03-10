@@ -10,8 +10,8 @@
     
     <% if (errors) { %>
         <ul class="notice">
-        <% error.array().forEach(error => { %>
-        <li><%= errors.msg %></li>
+        <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
         <%  }) %>
         </ul>
     <% } %> 
