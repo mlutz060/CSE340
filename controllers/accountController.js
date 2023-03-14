@@ -1,9 +1,9 @@
 const Utils = require("../utilities/");
-const register = require("../models/account-model");
+const Model = require("../models/account-model");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const utilities = require("../utilities/");
+const jwt = require("jsonwebtoken")
 require("dotenv").config()
+const utilities = require("../utilities/");
 
 /* ****************************************
 *  Deliver login view
@@ -47,7 +47,7 @@ async function registerClient(req, res) {
         errors: null,
       })
     }
-  const regResult = await register.registerClient(
+  const regResult = await Model.registerClient(
     client_firstname,
     client_lastname,
     client_email,
@@ -75,10 +75,10 @@ async function registerClient(req, res) {
 /* ****************************************
  *  Process login request
  * ************************************ */
-async function loginClient(req, res, next) {
+async function accountLogin(req, res) {
   let nav = await utilities.getNav()
   const { client_email, client_password } = req.body
-  const clientData = await register.getClientByEmail(client_email)
+  const clientData = await Model.getClientByEmail(client_email)
   if (!clientData) {
     const message = "Please check your credentials and try again."
     res.status(400).render("clients/login", {
@@ -92,8 +92,10 @@ async function loginClient(req, res, next) {
   }
   try {
     if (await bcrypt.compare(client_password, clientData.client_password)) {
+      console.log("compare")
       delete clientData.client_password
       const accessToken = jwt.sign(clientData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      console.log(accessToken)
       res.cookie("jwt", accessToken, { httpOnly: true })
       return res.redirect("/client/")
     }
@@ -102,8 +104,21 @@ async function loginClient(req, res, next) {
   }
 }
 
-async function management(req, res, next){
-  let nav = await utilities.getNav()
+async function logout (req, res, next){
+  let nav = await utilities.getNav();
+  res.clearCookie('jwt', { httpOnly: true });
+  res.redirect('/');
 }
 
-  module.exports = { buildLogin, buildRegister, registerClient, loginClient, management }
+
+async function management(req, res, next){
+  let nav = await utilities.getNav()
+  res.render("clients/management.ejs", {
+    title: null,
+    nav,
+    message: "You logged in!",
+    errors: null
+  })
+}
+
+  module.exports = { buildLogin, buildRegister, registerClient, accountLogin, logout, management }

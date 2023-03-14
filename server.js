@@ -12,11 +12,14 @@ const env = require("dotenv").config();
 const baseController = require("./controllers/baseController");
 const app = express();
 const cookieParser = require("cookie-parser");
+const utilities = require("./utilities/index")
 /* ***********************
  * Middleware
  *************************/
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) 
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 // for parsing application/x-www-form-urlencoded
 
 /* ***********************
@@ -39,7 +42,7 @@ app.use("/inv", require("./routes/inventory-route"))
 /*Account Route */
 app.use("/client", require("./routes/account-route"))
 
-app.use(cookieParser())
+
 
 /* ***********************
  * Local Server Information

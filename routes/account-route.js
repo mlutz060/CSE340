@@ -19,10 +19,18 @@ router.post(
     "/login",
     loginValidate.loginRules(),
     loginValidate.checkLoginData,
-    accountController.loginClient
+    accountController.accountLogin
   )
 
 // default route for clients 
-router.get("/", utilities.checkJWTToken, utilities.jwtAuth, accountController.management)
+router.get("/", 
+  utilities.checkJWTToken, 
+  utilities.jwtAuth, 
+  utilities.checkLogin, 
+  accountController.management
+)
+
+router.get("/logout",
+accountController.logout)
 
 module.exports = router;

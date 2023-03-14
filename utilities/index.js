@@ -1,5 +1,5 @@
 const invModel = require("../models/inventory-model")
-const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken')
 require("dotenv").config()
 const Util = {}
 
@@ -66,32 +66,49 @@ Util.getVehicle = async function (req, res, next) {
     return view;
 }
 
+Util.checkLogin = (req, res, next) => {
+    if (res.locals.loggedin) {
+      next()
+    } else {
+      return res.redirect("/client/login")
+    }
+   }
+
 /* ****************************************
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
-    jwt.verify(req.cookies.jwt, 
-        process.env.ACCESS_TOKEN_SECRET, 
-        function (err) {
-        if (err) {
-            return res.status(403).redirect("/client/login")
-        }
-        return next()
-    })
-}
+    if (req.cookies.jwt) {
+      jwt.verify(
+        req.cookies.jwt,
+        process.env.ACCESS_TOKEN_SECRET,
+        function (err, clientData) {
+          if (err) {
+            res.clearCookie("jwt")
+            return res.redirect("/account/login")
+          }
+        res.locals.clientData = clientData
+        res.locals.loggedin = 1
+        next()
+        })
+    } else {
+      next()
+    }
+  }
 
 /* ****************************************
  *  Authorize JWT Token
  * ************************************ */
 Util.jwtAuth = (req, res, next) => {
-    // const token = req.cookies.jwt
+    const token = req.cookies.jwt
     try {
         const clientData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
         req.clientData = clientData
+        res.locals.clientData = clientData
         next()
     } catch (error) {
         res.clearCookie("jwt", { httpOnly: true })
-        return res.status(403).redirect("/login")
+        return res.status(403).redirect("/")
     }
 }
 
