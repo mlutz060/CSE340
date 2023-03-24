@@ -34,7 +34,7 @@ app.set('layout', './layouts/layout'); //not at views root
  * Routes
  *************************/
 app.use(require("./routes/static"))
-app.get("/", baseController.buildHome)
+app.get("/", utilities.checkLogin, utilities.handleErrors(baseController.buildHome))
 
 /*Inventory routes*/
 app.use("/inv", require("./routes/inventory-route"))
@@ -42,6 +42,28 @@ app.use("/inv", require("./routes/inventory-route"))
 /*Account Route */
 app.use("/client", require("./routes/account-route"))
 
+/*Error Route*/
+app.use("/error", require("./routes/error-route"))
+
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message } else { message = 'Oh no! You broke the page! Try a different route'}
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message, 
+    nav
+  })
+})
 
 
 /* ***********************

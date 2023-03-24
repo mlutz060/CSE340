@@ -1,0 +1,43 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {} %>
+
+<% if (message) { %>
+    <p class="notice"><%= message %></p>
+    <% } %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+        <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+        <%  }) %>
+        </ul>
+    <% } %>
+
+    <p>Confirm Deletion - The delete is permanent.</p>
+    <fieldset>
+        <form class="add-form" action="/inv/delete-vehicle" method="post">
+            <label>Classification</label>
+            <br>
+            <label for="make">Make</label>
+            <br>
+            <input readonly name="inv_make" type="text" id="make">
+            <br>
+            <label for="model">Model</label>
+            <br>
+            <input readonly name="inv_model" type="text" id="model">
+            <br>
+            <label for="price">Price</label>
+            <br>
+            <input readonly name="inv_price" type="text" id="price">
+            <br>
+            <label for="year">Year</label>
+            <br>
+            <input readonly name="inv_year" type="text" id="year">
+            <br>
+            <button type="submit">Delete Vehicle</button>
+            <input type="hidden" name="inv_id" value="
+            <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
+        </form>
+    </fieldset>

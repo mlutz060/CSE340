@@ -14,14 +14,29 @@ router.get("/add-classification", invController.buildNewClassification);
 
 router.get("/add-vehicle", invController.addVehicleView);
 
+router.get("/getVehicles/:classification_id", invController.getVehiclesJSON);
+
+//delete route
+router.get("/delete-vehicle/:inv_id", invController.getDeleteVehicle);
+
+router.post("/delete-vehicle/:inv_id", invController.getDeleteVehicle);
+
+router.get("/edit/:vehicle_id", invController.editVehicleView );
+
 router.post("/add-classification",   
     validate.classificationRules(),
-    validate.checkClassData,
+    validate.checkClassData(),
     invController.addClassification);
 
 router.post("/add-vehicle", 
     validate.vehicleRules(),
     validate.checkVehicleData,
     invController.postNewVehicle);
+
+//handle incoming update
+router.post("/update/", 
+validate.newVehicleRules(),
+validate.checkUpdateData,
+invController.updateVehicle)    
 
 module.exports = router;
