@@ -72,4 +72,17 @@ async function updateVehicle(classification_id,
     }
 }
 
-module.exports = { getVehiclesByInvId, getClassifications, postNewClassification, getVehiclesByClassificationId, postNewVehicle };
+async function deleteVehicle(
+    inv_id, inv_make, inv_model, inv_price, inv_year
+     ){
+    try{
+        const sql = "DELETE FROM public.inventory WHERE inv_id = $1";
+        const data = await pool.query( sql, 
+        [inv_id, inv_make, inv_model, inv_price, inv_year])
+            return data
+    }catch (error){
+        next(error)
+    }
+}
+
+module.exports = { deleteVehicle, updateVehicle, getVehiclesByInvId, getClassifications, postNewClassification, getVehiclesByClassificationId, postNewVehicle };

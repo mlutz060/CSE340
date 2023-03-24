@@ -93,6 +93,8 @@ invCont.buildVehicleManagement = async function(req,res, next){
         title: "Vehicle Management",
         nav,
         classificationSelect,
+        errors: null,
+        menu: null,
         message: null
     })
 }
@@ -194,10 +196,10 @@ invCont.updateVehicle = async function (req, res, next) {
       const classificationSelect = await utilities.buildClassificationList(classification_id)
       const vehicleName = `${inv_make} ${inv_model}`
       res.status(501).render("inventory/edit-vehicle", {
-      title: "Edit " + vehicleName,
+      title: "Update " + vehicleName,
       nav,
       classificationSelect: classificationSelect,
-      message: "Sorry, the insert failed.",
+      message: "Sorry, the update failed.",
       errors: null,
       inv_id,
       inv_make,
@@ -210,6 +212,66 @@ invCont.updateVehicle = async function (req, res, next) {
       inv_miles,
       inv_color,
       classification_id
+      })
+    }
+  }
+
+
+/* ***************************
+ *  Build delete vehicle view
+ * ************************** */
+invCont.deleteVehicleView = async function (req, res, next) {
+    const inv_id = parseInt(req.params.inv_id)
+    let nav = await utilities.getNav()
+    const vehicleData = await invModel.getVehicleById(inv_id)
+    const menu = await utilities.buildClassificationList(vehicleData.classification_id)
+    const vehicleName = `${vehicleData.inv_make} ${vehicleData.inv_model}`
+    res.render("./inventory/delete-confirmation", {
+      title: "Delete " + vehicleName,
+      nav,
+      menu: menu,
+      message: null,
+      errors: null,
+      inv_id: vehicleData.inv_id,
+      inv_make: vehicleData.inv_make,
+      inv_model: vehicleData.inv_model,
+      inv_price: vehicleData.inv_price,
+      inv_year: vehicleData.inv_year
+    })
+  }
+
+
+  invCont.postDeleteVehicle = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    const {
+      inv_id, inv_make, inv_model,
+      inv_price, inv_year
+    } = req.body
+    const updateResult = await invModel.updateVehicle(
+      inv_id, inv_make, inv_model,
+      inv_price, inv_year)
+  
+    if (updateResult) {
+      const vehicleName = updateResult.inv_make + " " + updateResult.inv_model
+      res.status(201).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        message: `The ${vehicleName} was successfully deleted.`,
+        errors: null,
+      })
+    } else {
+      const inv_id = inv_id
+      const vehicleName = `${inv_make} ${inv_model}`
+      res.status(501).render("inventory/edit-vehicle", {
+      title: "Delete " + vehicleName,
+      nav,
+      message: "Sorry, the delete failed.",
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_price,
+      inv_year
       })
     }
   }
