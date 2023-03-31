@@ -21,7 +21,7 @@ router.get("/delete-vehicle/:inv_id", invController.deleteVehicleView);
 
 router.post("/delete-vehicle/:inv_id", invController.postDeleteVehicle);
 
-router.get("/edit/:vehicle_id", invController.editVehicleView );
+router.get("/edit/:inv_id", invController.editVehicleView );
 
 router.post("/add-classification",   
     validate.classificationRules(),

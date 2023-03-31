@@ -22,18 +22,18 @@
             <br>
             <label for="make">Make</label>
             <br>
-            <input name="inv_make" type="text" id="make">
+            <input name="inv_make" type="text" id="make" value="<%= locals.inv_make %>">
             <br>
             <label for="model">Model</label>
             <br>
-            <input name="inv_model" type="text" id="model">
+            <input name="inv_model" type="text" id="model" value="<%= locals.inv_model %>">
             <br>
             <label for="invDescription">Description</label>
             <br>
             <textarea
               name="inv_description"
               id="invDescription"
-            ></textarea>
+              ><%= locals.inv_description %></textarea>
             <br>
             <label for="image">Image Path</label>
             <br>
@@ -45,19 +45,19 @@
             <br>
             <label for="price">Price</label>
             <br>
-            <input name="inv_price" type="text" id="price">
+            <input name="inv_price" type="text" id="price" value="<%= locals.inv_price %>">
             <br>
             <label for="year">Year</label>
             <br>
-            <input name="inv_year" type="text" id="year">
+            <input name="inv_year" type="text" id="year" value="<%= locals.inv_year %>">
             <br>
             <label for="miles">Miles</label>
             <br>
-            <input name="inv_miles" type="text" id="miles">
+            <input name="inv_miles" type="text" id="miles" value="<%= locals.inv_miles %>">
             <br>
             <label for="color">Color</label>
             <br>
-            <input name="inv_colors" type="text" id="color">
+            <input name="inv_colors" type="text" id="inv_colors" value="<%= locals.inv_colors %>">
             <br>
             <button type="submit">Edit Vehicle</button>
             <input type="hidden" name="inv_id" value="
